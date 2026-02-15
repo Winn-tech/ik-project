@@ -1,0 +1,118 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 204 29% 20%;
+    --foreground: 150 46% 91%;
+
+    --card: 204 29% 16%;
+    --card-foreground: 150 46% 91%;
+
+    --popover: 204 29% 16%;
+    --popover-foreground: 150 46% 91%;
+
+    --primary: 186 35% 34%;
+    --primary-foreground: 150 46% 91%;
+
+    --secondary: 153 21% 48%;
+    --secondary-foreground: 204 29% 20%;
+
+    --muted: 204 29% 25%;
+    --muted-foreground: 150 46% 70%;
+
+    --accent: 153 21% 48%;
+    --accent-foreground: 204 29% 20%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 150 46% 91%;
+
+    --border: 204 29% 30%;
+    --input: 204 29% 30%;
+    --ring: 186 35% 34%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-flicks-dark text-flicks-light antialiased;
+    @apply font-body
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-flicks-light;
+    @apply font-heading
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-flicks-dark;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-flicks-teal rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-flicks-sage;
+  }
+}
+
+@layer components {
+  .movie-card {
+    @apply relative overflow-hidden rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg;
+  }
+
+  .movie-card-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 transition-opacity hover:opacity-100;
+  }
+
+  .btn-primary {
+    @apply bg-flicks-teal text-flicks-light hover:bg-flicks-sage transition-colors rounded-md px-4 py-2;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-flicks-light border border-flicks-teal hover:bg-flicks-teal/20 transition-colors rounded-md px-4 py-2;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+
+/* @keyframes slide-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+.animate-slide-left { animation: slide-left 0.3s forwards; }
+
+@keyframes slide-right {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+.animate-slide-right { animation: slide-right 0.3s forwards; } */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.animate-spin {
+  animation: spin 1s linear infinite;
+}

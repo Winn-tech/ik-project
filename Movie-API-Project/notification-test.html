@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Socket Notification Test</title>
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+<body>
+  <h2>Notification Test</h2>
+  <p id="status">Connecting...</p>
+  <ul id="notifications"></ul>
+
+  <script>
+    const socket = io("http://localhost:9000", {
+      withCredentials: true,
+    });
+
+    // Replace with your logged-in username
+    const myUsername = "arinze"; // 👈 Set to the username you want to simulate
+
+    socket.on("connect", () => {
+      document.getElementById("status").innerText = "Connected to server";
+
+      // Join personal room for this user
+      socket.emit("joinRoom", myUsername);
+    });
+
+    socket.on("newNotification", (data) => {
+      const li = document.createElement("li");
+      li.textContent = `${data.message} — ${data.link}`;
+      document.getElementById("notifications").appendChild(li);
+    });
+
+    socket.on("disconnect", () => {
+      document.getElementById("status").innerText = "Disconnected";
+    });
+  </script>
+</body>
+</html>
